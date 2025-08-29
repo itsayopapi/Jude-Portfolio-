@@ -6,27 +6,42 @@
   <title>Jude Peter — Model Portfolio</title>
   
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- FAV ICON -->
-    <link rel="icon" href="./Jude fav.png" type="image/png" />
+  <link rel="icon" href="./Jude fav.png" type="image/png" />
   
   <style>
     :root {
-      --bg: #0a0a0a;
-      --text: #ffffff;
-      --accent: #00f0ff;
-      --muted: #888;
-      --highlight: rgba(0, 240, 255, 0.1);
+      --dark-blue: #0A1929;
+      --navy: #132F4C;
+      --gold: #D4AF37;
+      --light-gold: #F1E5AC;
+      --cream: #F8F5F0;
+      --text: #E9EAEC;
+      --text-muted: #A0A9B7;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
-      font-family: 'Space Grotesk', sans-serif;
-      background: var(--bg);
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-blue);
       color: var(--text);
-      margin: 0;
       line-height: 1.6;
       overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
     }
     
     .container {
@@ -35,262 +50,309 @@
       margin: 0 auto;
     }
     
-    /* Minimal Header */
+    /* Header */
     .site-header {
-      padding: 2rem 0;
+      padding: 1.5rem 0;
       position: fixed;
       width: 100%;
-      z-index: 100;
-      transition: all 0.3s ease;
+      z-index: 1000;
+      transition: all 0.4s ease;
+      background: transparent;
     }
     
     .site-header.scrolled {
-      background: rgba(10, 10, 10, 0.9);
+      background: rgba(10, 25, 41, 0.95);
       padding: 1rem 0;
       backdrop-filter: blur(10px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .brand {
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--gold);
+      text-decoration: none;
       letter-spacing: 1px;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    
+    .nav-menu a {
       color: var(--text);
       text-decoration: none;
-      font-size: 1.2rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+      color: var(--gold);
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     
     /* Hero Section */
     .hero {
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      align-items: center;
       position: relative;
       overflow: hidden;
+      padding: 6rem 0 4rem;
     }
     
     .hero::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 0;
-      width: 100%;
+      right: 0;
+      width: 50%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(0,240,255,0.1) 0%, transparent 70%);
-      z-index: -1;
-    }
-    
-    .hero-image {
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 40%;
-      max-width: 600px;
-      height: 80%;
-      object-fit: cover;
-      border-radius: 5px;
-      opacity: 0;
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    
-    .hero-image.active {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
+      background: linear-gradient(90deg, rgba(10, 25, 41, 0) 0%, rgba(10, 25, 41, 0.9) 100%);
+      z-index: 2;
     }
     
     .hero-content {
+      position: relative;
+      z-index: 3;
       width: 50%;
     }
     
     .hero-title {
-      font-size: clamp(3rem, 8vw, 6rem);
-      font-weight: 700;
-      margin: 0 0 1rem;
-      line-height: 1;
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--cream);
     }
     
-    .hero-title.active {
-      transform: translateY(0);
-      opacity: 1;
+    .hero-title span {
+      color: var(--gold);
+      display: block;
     }
     
     .hero-subtitle {
       font-size: 1.2rem;
-      color: var(--muted);
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
       max-width: 500px;
-      margin-bottom: 3rem;
-      transform: translateY(20px);
-      opacity: 0;
-      transition: transform 0.8s ease 0.2s, opacity 0.8s ease 0.2s;
+      font-weight: 300;
+      line-height: 1.6;
     }
     
-    .hero-subtitle.active {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .scroll-prompt {
+    .hero-image {
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.9rem;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
     }
     
-    .scroll-prompt::after {
-      content: "";
-      display: block;
-      width: 1px;
-      height: 50px;
-      background: var(--muted);
-      margin-top: 1rem;
-      animation: scrollPrompt 2s infinite;
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--gold);
+      color: var(--dark-blue);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 30px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--gold);
+      letter-spacing: 0.5px;
     }
     
-    @keyframes scrollPrompt {
-      0%, 100% { opacity: 0; height: 0; }
-      50% { opacity: 1; height: 50px; }
+    .btn:hover {
+      background: transparent;
+      color: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
     }
     
-    /* Content Sections */
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      margin-left: 1rem;
+    }
+    
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--dark-blue);
+    }
+    
+    /* Section Styles */
     .section {
-      padding: 8rem 0;
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
+      padding: 6rem 0;
     }
     
     .section-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
+      font-size: 2.5rem;
       margin-bottom: 3rem;
       position: relative;
       display: inline-block;
+      color: var(--cream);
     }
     
     .section-title::after {
-      content: "";
+      content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 0;
-      width: 50px;
-      height: 2px;
-      background: var(--accent);
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
     }
     
-    /* Rotational Gallery */
-    .gallery-section {
-      background: var(--bg);
-      overflow: hidden;
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
     
-    .gallery-container {
-      position: relative;
-      width: 100%;
-      height: 70vh;
-      perspective: 1000px;
+    .about-text p {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.8;
     }
     
-    .rotational-gallery {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 1s ease;
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
     
-    .gallery-item {
-      position: absolute;
-      width: 300px;
-      height: 450px;
-      left: 50%;
-      top: 50%;
-      transform-origin: center;
-      transform-style: preserve-3d;
-      transition: all 0.5s ease;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .gallery-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+    .stat-item {
+      background: var(--navy);
       padding: 2rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s ease;
     }
     
-    .gallery-item:hover .gallery-content {
-      opacity: 1;
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
     
-    /* Work Grid */
-    .work-grid {
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+    
+    /* Portfolio Section */
+    .portfolio {
+      background: var(--navy);
+    }
+    
+    .portfolio-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 2rem;
     }
     
-    .work-item {
+    .portfolio-item {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 1/1.2;
-      transform: translateY(50px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
+      border-radius: 10px;
+      height: 400px;
+      cursor: pointer;
     }
     
-    .work-item.in-view {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .work-item img {
+    .portfolio-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
     }
     
-    .work-item:hover img {
-      transform: scale(1.05);
+    .portfolio-item:hover .portfolio-img {
+      transform: scale(1.1);
     }
     
-    .work-info {
+    .portfolio-overlay {
       position: absolute;
-      bottom: 0;
+      top: 0;
       left: 0;
       width: 100%;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+      height: 100%;
+      background: linear-gradient(to top, rgba(10, 25, 41, 0.9) 0%, transparent 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     
-    /* Education Timeline */
+    .portfolio-item:hover .portfolio-overlay {
+      opacity: 1;
+    }
+    
+    .portfolio-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--cream);
+    }
+    
+    .portfolio-category {
+      color: var(--gold);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    /* Career Section */
     .timeline {
       position: relative;
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
     }
     
@@ -298,7 +360,7 @@
       content: '';
       position: absolute;
       width: 2px;
-      background-color: var(--muted);
+      background: var(--gold);
       top: 0;
       bottom: 0;
       left: 50%;
@@ -306,95 +368,215 @@
     }
     
     .timeline-item {
-      padding: 10px 40px;
+      padding: 20px 40px;
       position: relative;
       width: 50%;
       box-sizing: border-box;
       margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-    
-    .timeline-item.in-view {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     .timeline-item:nth-child(odd) {
       left: 0;
       text-align: right;
+      padding-right: 60px;
     }
     
     .timeline-item:nth-child(even) {
       left: 50%;
+      padding-left: 60px;
     }
     
     .timeline-content {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
+      background: var(--navy);
+      padding: 2rem;
+      border-radius: 10px;
       position: relative;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     .timeline-date {
-      color: var(--accent);
+      color: var(--gold);
       font-weight: 600;
-    }
-    
-    /* About Section */
-    .about-content {
-      display: flex;
-      gap: 4rem;
-      align-items: center;
-    }
-    
-    .about-text {
-      flex: 1;
-      transform: translateX(-50px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-    
-    .about-text.in-view {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    
-    .about-stats {
-      flex: 1;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-      transform: translateX(50px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-    
-    .about-stats.in-view {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    
-    .stat-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--accent);
       margin-bottom: 0.5rem;
+      display: block;
+      font-size: 0.9rem;
+    }
+    
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: var(--cream);
+    }
+    
+    .timeline-content p {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      top: 50%;
+      transform: translateY(-50%);
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-marker {
+      left: -10px;
+    }
+    
+    /* Contact Section */
+    .contact-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+    
+    .contact-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--cream);
+    }
+    
+    .contact-text p {
+      color: var(--text-muted);
+    }
+    
+    .contact-form {
+      background: var(--navy);
+      padding: 2.5rem;
+      border-radius: 10px;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      font-weight: 500;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--gold);
+      color: var(--dark-blue);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .submit-btn:hover {
+      background: var(--light-gold);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
     }
     
     /* Footer */
     .site-footer {
-      padding: 4rem 0;
+      background: var(--navy);
+      padding: 4rem 0 2rem;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-quote {
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--dark-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    
+    .social-link:hover {
+      background: var(--gold);
+      color: var(--dark-blue);
+      transform: translateY(-3px);
     }
     
     .footer-links {
@@ -407,58 +589,156 @@
     .footer-links a {
       color: var(--text);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
     }
     
     .footer-links a:hover {
-      color: var(--accent);
+      color: var(--gold);
     }
     
     .copyright {
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 0.9rem;
     }
-    .site-footer {
-  background: #0d0d0d;
-  padding: 30px 20px;
-  text-align: center;
-  color: #bbb;
-  font-size: 14px;
-}
-
-.site-footer .footer-links {
-  margin-bottom: 15px;
-}
-
-.site-footer .footer-links a {
-  margin: 0 10px;
-  color: #bbb;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.site-footer .footer-links a:hover {
-  color: #efefef;
-}
-
-.site-footer .copyright a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.site-footer .copyright a:hover {
-  color: #fff;
-}
-
+    
+    .copyright a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero-content {
+        width: 60%;
+      }
+      
+      .about-content,
+      .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      
+      .hero::before {
+        width: 70%;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--navy);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.4s ease;
+        z-index: 999;
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        z-index: 1000;
+      }
+      
+      .hero-content {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .hero::before {
+        display: none;
+      }
+      
+      .hero-image {
+        width: 100%;
+        opacity: 0.3;
+      }
+      
+      .btn {
+        display: block;
+        margin: 1rem auto;
+        text-align: center;
+      }
+      
+      .btn-outline {
+        margin-left: 0;
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+        text-align: left;
+      }
+      
+      .timeline-item:nth-child(odd) {
+        text-align: left;
+        padding-right: 20px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+        padding-left: 70px;
+      }
+      
+      .timeline-marker {
+        left: 20px !important;
+        right: auto;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .section {
+        padding: 4rem 0;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Minimal Header -->
+  <!-- Header -->
   <header class="site-header">
-    <div class="container">
+    <div class="container header-container">
       <a href="#" class="brand">JUDE PETER</a>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </header>
 
@@ -466,41 +746,42 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Jude. T<br>Peter</h1>
-        <p class="hero-subtitle">Welcome To My Website</p>
+        <h1 class="hero-title">Jude <span>Peter</span></h1>
+        <p class="hero-subtitle">A versatile model with a cinematic eye, specializing in editorial, commercial, and lifestyle photography that tells compelling visual stories.</p>
+        <div>
+          <a href="#portfolio" class="btn">View Portfolio</a>
+          <a href="#contact" class="btn btn-outline">Contact Me</a>
+        </div>
       </div>
-      
-      <!-- Replace with your hero image path -->
-      <img src="images/jude-6.jpg" alt="Jude Peter" class="hero-image">
-      
-      <!--<div class="scroll-prompt">SCROLL TO DISCOVER</div>-->
     </div>
+    <img src="images/jude-6.jpg" alt="Jude Peter" class="hero-image">
   </section>
 
   <!-- About Section -->
-  <section class="section">
+  <section class="section" id="about">
     <div class="container">
-      <h2 class="section-title">ABOUT</h2>
+      <h2 class="section-title">About Me</h2>
       <div class="about-content">
         <div class="about-text">
           <p>Jude Peter is a creative model with a cinematic eye—comfortable across lifestyle, street, and editorial looks. He blends calm presence with expressive storytelling, producing frames that feel alive, spontaneous, and memorable.</p>
           <p>With over 8 years of experience in the fashion industry, Jude has worked with top brands and photographers worldwide, bringing versatility and professionalism to every project.</p>
+          <p>His ability to adapt to various styles and concepts makes him a sought-after talent in the competitive modeling industry.</p>
         </div>
         <div class="about-stats">
           <div class="stat-item">
-            <div class="stat-number">50+</div>
+            <span class="stat-number">50+</span>
             <div class="stat-label">Brands Worked With</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">12</div>
+            <span class="stat-number">12</span>
             <div class="stat-label">Countries</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">100+</div>
+            <span class="stat-number">100+</span>
             <div class="stat-label">Editorials</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">5</div>
+            <span class="stat-number">5</span>
             <div class="stat-label">Awards</div>
           </div>
         </div>
@@ -508,192 +789,198 @@
     </div>
   </section>
 
-  <!-- Rotational Gallery Section -->
-  <section class="section gallery-section">
+  <!-- Portfolio Section -->
+  <section class="section portfolio" id="portfolio">
     <div class="container">
-      <h2 class="section-title">GALLERY</h2>
-      <div class="gallery-container">
-        <div class="rotational-gallery" id="rotationalGallery">
-          <!-- Gallery items will be added via JavaScript -->
+      <h2 class="section-title">Portfolio</h2>
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <img src="images/jude-1.jpg" alt="Editorial Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Editorial</h3>
+            <p class="portfolio-category">Vogue Italia</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/jude-2.jpg" alt="Lifestyle Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Lifestyle</h3>
+            <p class="portfolio-category">Nike Campaign</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/street-1.jpg" alt="Street Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Street</h3>
+            <p class="portfolio-category">Urban Stories</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/commercial-1.jpg" alt="Commercial Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Commercial</h3>
+            <p class="portfolio-category">Calvin Klein</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/jude-8.jpg" alt="Fashion Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Fashion</h3>
+            <p class="portfolio-category">Paris Fashion Week</p>
+          </div>
+        </div>
+        <div class="portfolio-item">
+          <img src="images/jude-9.jpg" alt="Beauty Work" class="portfolio-img">
+          <div class="portfolio-overlay">
+            <h3 class="portfolio-title">Beauty</h3>
+            <p class="portfolio-category">L'Oréal Campaign</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Work Section -->
-  <section class="section">
+  <!-- Career Section -->
+  <section class="section" id="career">
     <div class="container">
-      <h2 class="section-title">SELECTED WORK</h2>
-      
-      <div class="work-grid">
-        <div class="work-item">
-          <!-- Replace with your image paths -->
-          <img src="images/jude-1.jpg" alt="Editorial Work">
-          <div class="work-info">
-            <h3>Editorial</h3>
-            <p>Vogue Italia</p>
-          </div>
-        </div>
-        
-        <div class="work-item">
-          <img src="images/jude-2.jpg" alt="Lifestyle Work">
-          <div class="work-info">
-            <h3>Lifestyle</h3>
-            <p>Nike Campaign</p>
-          </div>
-        </div>
-        
-        <div class="work-item">
-          <img src="images/street-1.jpg" alt="Street Work">
-          <div class="work-info">
-            <h3>Street</h3>
-            <p>Urban Stories</p>
-          </div>
-        </div>
-        
-        <div class="work-item">
-          <img src="images/commercial-1.jpg" alt="Commercial Work">
-          <div class="work-info">
-            <h3>Commercial</h3>
-            <p>Calvin Klein</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Education Section -->
-  <section class="section">
-    <div class="container">
-      <h2 class="section-title">EDUCATION & CAREER</h2>
+      <h2 class="section-title">Education & Career</h2>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2015</div>
+            <span class="timeline-date">2015</span>
             <h3>Fashion Institute</h3>
             <p>Completed professional modeling course at New York Fashion Institute</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2016</div>
+            <span class="timeline-date">2016</span>
             <h3>First Major Campaign</h3>
             <p>Featured in GQ Magazine summer edition</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2018</div>
+            <span class="timeline-date">2018</span>
             <h3>International Work</h3>
             <p>Began working with European brands in Milan and Paris</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2020</div>
+            <span class="timeline-date">2020</span>
             <h3>Model of the Year</h3>
             <p>Received Fashion Model Award for outstanding work</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2023</div>
+            <span class="timeline-date">2023</span>
             <h3>Current Projects</h3>
             <p>Working on sustainable fashion campaigns worldwide</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="section">
+  <section class="section" id="contact">
     <div class="container">
-      <h2 class="section-title">CONTACT</h2>
-      <p>For bookings and collaborations:</p>
-      <p><a href="mailto:bookings@judepeter.com" style="color: var(--accent);">bookings@judepeter.com</a></p>
+      <h2 class="section-title">Get In Touch</h2>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Email</h4>
+              <p>bookings@judepeter.com</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Phone</h4>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-text">
+              <h4>Location</h4>
+              <p>New York, NY</p>
+            </div>
+          </div>
+        </div>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
 
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-links">
-      <a href="https://www.instagram.com/reallyjudepeter" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="#">Agent</a>
-      <a href="#">Imprint</a>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">JUDE PETER</div>
+        <p class="footer-quote">"Fashion is not necessarily about labels. It's not about brands. It's about something else that comes from within you." — Ralph Lauren</p>
+      </div>
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
+      </div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#career">Career</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="copyright">© 2023 Jude Peter. All rights reserved. Designed by <a href="https://www.instagram.com/the.african_gorilla">Ayo</a></p>
     </div>
-    <p class="copyright">
-      © 2025 Jude Peter. All rights reserved. Designed by 
-      <a href="https://www.instagram.com/the.african_gorilla" target="_blank" rel="noopener noreferrer">Ayo</a>.
-    </p>
-  </div>
-</footer>
-
+  </footer>
 
   <script>
-    // Hero animation on load
     document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(() => {
-        document.querySelector('.hero-title').classList.add('active');
-        document.querySelector('.hero-subtitle').classList.add('active');
-        document.querySelector('.hero-image').classList.add('active');
-      }, 300);
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navMenu = document.getElementById('navMenu');
       
-      // Create rotational gallery items with your images
-      const gallery = document.getElementById('rotationalGallery');
-      const galleryItems = [
-        { 
-          img: 'images/jude-8.jpg',
-        },
-        { 
-          img: 'images/jude-9.jpg',
-        },
-        { 
-          img: 'images/jude-7.jpg',
-        },
-        { 
-          img: 'images/jude-6.jpg',
-        },
-        { 
-          img: 'images/jude-5.jpg',
-        }
-      ];
-      
-      galleryItems.forEach((item, index) => {
-        const angle = (360 / galleryItems.length) * index;
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
-        galleryItem.style.transform = `rotateY(${angle}deg) translateZ(400px)`;
-        
-        galleryItem.innerHTML = `
-          <img src="${item.img}" alt="${item.title}">
-          <div class="gallery-content">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-          </div>
-        `;
-        
-        gallery.appendChild(galleryItem);
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
       });
       
-      // Rotate gallery on scroll
-      let currentAngle = 0;
-      const gallerySection = document.querySelector('.gallery-section');
-      const rotationalGallery = document.getElementById('rotationalGallery');
-      
+      // Header scroll effect
       window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const galleryPosition = gallerySection.offsetTop;
-        const windowHeight = window.innerHeight;
-        
-        if (scrollPosition > galleryPosition - windowHeight / 2) {
-          const scrollPercent = (scrollPosition - galleryPosition + windowHeight / 2) / (windowHeight * 0.8);
-          currentAngle = scrollPercent * 360;
-          rotationalGallery.style.transform = `rotateY(${currentAngle}deg)`;
-        }
-        
-        // Header scroll effect
         if (window.scrollY > 100) {
           document.querySelector('.site-header').classList.add('scrolled');
         } else {
@@ -701,19 +988,28 @@
         }
       });
       
-      // Intersection Observer for scroll animations
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+            
+            // Close mobile menu after clicking
+            if (navMenu.classList.contains('active')) {
+              navMenu.classList.remove('active');
+              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
           }
         });
-      }, {
-        threshold: 0.1
-      });
-      
-      document.querySelectorAll('.work-item, .timeline-item, .about-text, .about-stats').forEach(el => {
-        observer.observe(el);
       });
     });
   </script>
