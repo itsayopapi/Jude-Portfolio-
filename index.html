@@ -5,740 +5,488 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jude Peter — Model Portfolio</title>
   
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Fonts: Using more modern and elegant choices -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <!-- FAV ICON -->
   <link rel="icon" href="./Jude fav.png" type="image/png" />
   
   <style>
+    /* New CSS Variables for a refined palette and easier customization */
     :root {
-      --dark-blue: #0A1929;
-      --navy: #132F4C;
-      --gold: #D4AF37;
-      --light-gold: #F1E5AC;
-      --cream: #F8F5F0;
-      --text: #E9EAEC;
-      --text-muted: #A0A9B7;
+      --bg-dark: #0F0F0F; /* Even darker background */
+      --bg-light: #1A1A1A;
+      --text-primary: #E0E0E0; /* Softer white for main text */
+      --text-secondary: #A0A0A0; /* Muted text */
+      --accent-color: #BB86FC; /* A subtle, elegant purple */
+      --highlight-fade: rgba(187, 134, 252, 0.1); /* Lighter accent for subtle effects */
+      --border-color: rgba(255, 255, 255, 0.1);
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Montserrat', sans-serif;
     }
     
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
-    
+
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--dark-blue);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: var(--font-body);
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
       overflow-x: hidden;
-    }
-    
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     
     .container {
       width: 90%;
-      max-width: 1200px;
+      max-width: 1400px; /* Slightly wider container for more expansive layouts */
       margin: 0 auto;
+      padding: 0 15px; /* Add some padding for smaller screens */
     }
-    
-    /* Header */
+
+    /* Reusable utility classes */
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+    .mt-4 { margin-top: 2rem; }
+    .mb-4 { margin-bottom: 2rem; }
+
+    /* Buttons - A new, more modern button style */
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 2rem;
+        border: 2px solid var(--accent-color);
+        border-radius: 5px;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background: var(--accent-color);
+        color: var(--bg-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Minimal Header - More refined and slightly larger */
     .site-header {
-      padding: 1.5rem 0;
+      padding: 1.5rem 0; /* Slightly less padding */
       position: fixed;
       width: 100%;
-      z-index: 1000;
-      transition: all 0.4s ease;
-      background: transparent;
+      z-index: 1000; /* Higher z-index */
+      transition: all 0.4s ease; /* Slower transition */
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .site-header.scrolled {
-      background: rgba(10, 25, 41, 0.95);
+      background: rgba(15, 15, 15, 0.95); /* Darker, less opaque background */
       padding: 1rem 0;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(15px); /* Stronger blur */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Subtle shadow */
     }
-    
-    .header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
+    .site-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .brand {
-      font-family: 'Playfair Display', serif;
+      font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 1.8rem;
-      color: var(--gold);
+      letter-spacing: 1.5px; /* More prominent letter spacing */
+      color: var(--text-primary);
       text-decoration: none;
-      letter-spacing: 1px;
+      font-size: 1.5rem; /* Slightly larger brand name */
+      transition: color 0.3s ease;
     }
-    
-    .nav-menu {
-      display: flex;
-      list-style: none;
-      gap: 2.5rem;
+
+    .brand:hover {
+        color: var(--accent-color);
     }
-    
-    .nav-menu a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      transition: all 0.3s ease;
-      position: relative;
+
+    /* Navigation - Adding a responsive navigation */
+    .main-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2.5rem; /* More space between nav items */
     }
-    
-    .nav-menu a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px;
-      left: 0;
-      background-color: var(--gold);
-      transition: width 0.3s ease;
+
+    .main-nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 1rem;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
     }
-    
-    .nav-menu a:hover {
-      color: var(--gold);
+
+    .main-nav a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background: var(--accent-color);
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease;
     }
-    
-    .nav-menu a:hover::after {
-      width: 100%;
+
+    .main-nav a:hover, .main-nav a.active {
+        color: var(--text-primary);
     }
-    
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
+
+    .main-nav a:hover::after, .main-nav a.active::after {
+        width: 100%;
     }
-    
-    /* Hero Section */
+
+    /* Hamburger Menu for Mobile */
+    .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: var(--text-primary);
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 768px) {
+        .main-nav {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(15, 15, 15, 0.98);
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            transform: translateX(100%);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .main-nav.active {
+            transform: translateX(0);
+            display: flex;
+        }
+
+        .main-nav ul {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .main-nav a {
+            font-size: 1.8rem;
+            padding: 15px 0;
+        }
+
+        .menu-toggle {
+            display: flex;
+        }
+    }
+
+    /* Hero Section - Dynamic and engaging */
     .hero {
-      min-height: 100vh;
+      height: 100vh;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      justify-content: center;
       position: relative;
       overflow: hidden;
-      padding: 6rem 0 4rem;
+      background: var(--bg-dark); /* Ensure background for particle effect */
+      padding-top: 80px; /* Account for fixed header */
     }
     
+    /* Radial gradient for depth */
     .hero::before {
       content: "";
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(90deg, rgba(10, 25, 41, 0) 0%, rgba(10, 25, 41, 0.9) 100%);
-      z-index: 2;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      background: radial-gradient(circle at 50% 50%, var(--highlight-fade) 0%, transparent 60%);
+      transform: translate(-50%, -50%) scale(0.8);
+      opacity: 0;
+      animation: heroBackgroundFadeIn 2s ease forwards 0.5s;
+      z-index: 0;
     }
-    
+
+    @keyframes heroBackgroundFadeIn {
+        to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
+
     .hero-content {
       position: relative;
-      z-index: 3;
-      width: 50%;
+      z-index: 2;
+      width: 60%; /* Adjusted width */
     }
     
     .hero-title {
-      font-size: clamp(2.5rem, 5vw, 5rem);
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: var(--cream);
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 9vw, 7.5rem); /* Larger, more impactful title */
+      font-weight: 700;
+      margin: 0 0 1rem;
+      line-height: 1;
+      color: var(--text-primary);
+      letter-spacing: -2px;
+      transform: translateY(50px) scale(0.95);
+      opacity: 0;
+      animation: heroTextReveal 1.2s ease forwards 0.8s;
     }
-    
-    .hero-title span {
-      color: var(--gold);
-      display: block;
-    }
-    
+
     .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--text-muted);
-      margin-bottom: 2.5rem;
-      max-width: 500px;
-      font-weight: 300;
-      line-height: 1.6;
+      font-family: var(--font-body);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 3rem;
+      letter-spacing: 1px;
+      transform: translateY(50px) scale(0.95);
+      opacity: 0;
+      animation: heroTextReveal 1.2s ease forwards 1.2s;
+    }
+
+    @keyframes heroTextReveal {
+        to { transform: translateY(0) scale(1); opacity: 1; }
     }
     
     .hero-image {
       position: absolute;
-      top: 0;
-      right: 0;
-      width: 60%;
-      height: 100%;
+      right: 5%;
+      bottom: 0; /* Align to bottom for a more grounded feel */
+      width: 45%; /* Slightly larger image */
+      max-width: 700px;
+      height: 90%; /* Take up more height */
       object-fit: cover;
+      object-position: center top; /* Focus on the model's upper body */
+      border-radius: 10px; /* Slightly more rounded corners */
+      opacity: 0;
+      transform: translateX(100px) scale(0.9);
+      animation: heroImageReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s; /* Custom bezier curve for smooth bounce */
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); /* More prominent shadow */
       z-index: 1;
     }
-    
-    .btn {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background: var(--gold);
-      color: var(--dark-blue);
-      text-decoration: none;
-      font-weight: 600;
-      border-radius: 30px;
-      transition: all 0.3s ease;
-      border: 2px solid var(--gold);
+
+    @keyframes heroImageReveal {
+        to { transform: translateX(0) scale(1); opacity: 1; }
+    }
+
+    /* Scroll Prompt - More subtle and animated */
+    .scroll-prompt {
+      position: absolute;
+      bottom: 4rem; /* Higher from the bottom */
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
       letter-spacing: 0.5px;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2s;
+      z-index: 2;
     }
     
-    .btn:hover {
-      background: transparent;
-      color: var(--gold);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+    .scroll-prompt::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 40px; /* Shorter line */
+      background: var(--text-secondary);
+      margin-top: 0.8rem;
+      animation: scrollPulse 1.5s infinite ease-in-out; /* More elegant pulse */
     }
     
-    .btn-outline {
-      background: transparent;
-      color: var(--gold);
-      margin-left: 1rem;
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(0.3); opacity: 0.3; }
+      50% { transform: scaleY(1); opacity: 1; }
     }
-    
-    .btn-outline:hover {
-      background: var(--gold);
-      color: var(--dark-blue);
+    @keyframes fadeIn {
+        to { opacity: 1; }
     }
-    
-    /* Section Styles */
+
+    /* General Section Styles - More padding and alignment */
     .section {
-      padding: 6rem 0;
+      padding: 10rem 0; /* More vertical padding */
+      position: relative;
+      min-height: 80vh; /* Adjust min-height */
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center content vertically and horizontally */
+      background: var(--bg-dark);
+    }
+    .section:nth-of-type(even) {
+        background: var(--bg-light); /* Alternate background for sections */
     }
     
     .section-title {
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4rem); /* Larger and more prominent titles */
+      font-weight: 700;
+      margin-bottom: 3.5rem;
       position: relative;
       display: inline-block;
-      color: var(--cream);
+      color: var(--text-primary);
+      text-align: center;
+      width: 100%;
+      letter-spacing: -1px;
     }
     
     .section-title::after {
-      content: '';
+      content: "";
       position: absolute;
-      bottom: -15px;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--gold);
+      bottom: -15px; /* Lower the accent line */
+      left: 50%; /* Center the accent line */
+      transform: translateX(-50%);
+      width: 80px; /* Longer accent line */
+      height: 3px; /* Thicker accent line */
+      background: var(--accent-color);
+      border-radius: 2px;
     }
-    
-    /* About Section */
-    .about-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
+
+    /* Animation utility for elements that fade/slide into view */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    
-    .about-text p {
-      margin-bottom: 1.5rem;
-      color: var(--text-muted);
-      line-height: 1.8;
+
+    .animate-on-scroll.is-visible {
+        opacity: 1;
+        transform: translateY(0);
     }
-    
-    .about-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-    }
-    
-    .stat-item {
-      background: var(--navy);
-      padding: 2rem;
-      border-radius: 10px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .stat-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-    
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-    
-    .stat-label {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--text-muted);
-    }
-    
-    /* Portfolio Section */
-    .portfolio {
-      background: var(--navy);
-    }
-    
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .portfolio-item {
-      position: relative;
-      overflow: hidden;
-      border-radius: 10px;
-      height: 400px;
-      cursor: pointer;
-    }
-    
-    .portfolio-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .portfolio-item:hover .portfolio-img {
-      transform: scale(1.1);
-    }
-    
-    .portfolio-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(10, 25, 41, 0.9) 0%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .portfolio-item:hover .portfolio-overlay {
-      opacity: 1;
-    }
-    
-    .portfolio-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: var(--cream);
-    }
-    
-    .portfolio-category {
-      color: var(--gold);
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    /* Career Section */
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    .timeline::before {
-      content: '';
-      position: absolute;
-      width: 2px;
-      background: var(--gold);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -1px;
-    }
-    
-    .timeline-item {
-      padding: 20px 40px;
-      position: relative;
-      width: 50%;
-      box-sizing: border-box;
-      margin-bottom: 2rem;
-    }
-    
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-      padding-right: 60px;
-    }
-    
-    .timeline-item:nth-child(even) {
-      left: 50%;
-      padding-left: 60px;
-    }
-    
-    .timeline-content {
-      background: var(--navy);
-      padding: 2rem;
-      border-radius: 10px;
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-    
-    .timeline-date {
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      display: block;
-      font-size: 0.9rem;
-    }
-    
-    .timeline-content h3 {
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      color: var(--cream);
-    }
-    
-    .timeline-content p {
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
-    .timeline-marker {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: var(--gold);
-      top: 50%;
-      transform: translateY(-50%);
-      right: -10px;
-    }
-    
-    .timeline-item:nth-child(even) .timeline-marker {
-      left: -10px;
-    }
-    
-    /* Contact Section */
-    .contact-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-    }
-    
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-    
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-    }
-    
-    .contact-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: var(--navy);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold);
-      font-size: 1.2rem;
-    }
-    
-    .contact-text h4 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-      color: var(--cream);
-    }
-    
-    .contact-text p {
-      color: var(--text-muted);
-    }
-    
-    .contact-form {
-      background: var(--navy);
-      padding: 2.5rem;
-      border-radius: 10px;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 1rem;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
-      color: var(--text);
-      font-family: 'Inter', sans-serif;
-    }
-    
-    .form-control:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-    
-    textarea.form-control {
-      min-height: 150px;
-      resize: vertical;
-    }
-    
-    .submit-btn {
-      background: var(--gold);
-      color: var(--dark-blue);
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 30px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .submit-btn:hover {
-      background: var(--light-gold);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
-    }
-    
-    /* Footer */
-    .site-footer {
-      background: var(--navy);
-      padding: 4rem 0 2rem;
-      text-align: center;
-    }
-    
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
-    
-    .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-    
-    .footer-quote {
-      max-width: 600px;
-      margin: 0 auto;
-      font-style: italic;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .social-link {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: var(--dark-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      font-size: 1.2rem;
-    }
-    
-    .social-link:hover {
-      background: var(--gold);
-      color: var(--dark-blue);
-      transform: translateY(-3px);
-    }
-    
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .footer-links a {
-      color: var(--text);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    .footer-links a:hover {
-      color: var(--gold);
-    }
-    
-    .copyright {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-    
-    .copyright a {
-      color: var(--gold);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    
-    /* Responsive Styles */
+
+    /* Responsive Adjustments for Hero Section */
     @media (max-width: 992px) {
-      .hero-content {
-        width: 60%;
-      }
-      
-      .about-content,
-      .contact-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-      }
-      
-      .hero::before {
-        width: 70%;
-      }
+        .hero-content {
+            width: 80%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero-image {
+            width: 60%;
+            height: 60%;
+            top: unset;
+            bottom: 0;
+            left: 50%;
+            right: unset;
+            transform: translateX(-50%);
+            object-fit: contain; /* Adjust object fit for smaller screens */
+        }
     }
-    
+
     @media (max-width: 768px) {
-      .nav-menu {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        height: 100vh;
-        background: var(--navy);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: all 0.4s ease;
-        z-index: 999;
-      }
-      
-      .nav-menu.active {
-        right: 0;
-      }
-      
-      .mobile-menu-btn {
-        display: block;
-        z-index: 1000;
-      }
-      
-      .hero-content {
-        width: 100%;
-        text-align: center;
-      }
-      
-      .hero::before {
-        display: none;
-      }
-      
-      .hero-image {
-        width: 100%;
-        opacity: 0.3;
-      }
-      
-      .btn {
-        display: block;
-        margin: 1rem auto;
-        text-align: center;
-      }
-      
-      .btn-outline {
-        margin-left: 0;
-      }
-      
-      .timeline::before {
-        left: 30px;
-      }
-      
-      .timeline-item {
-        width: 100%;
-        padding-left: 70px;
-        padding-right: 20px;
-        text-align: left;
-      }
-      
-      .timeline-item:nth-child(odd) {
-        text-align: left;
-        padding-right: 20px;
-      }
-      
-      .timeline-item:nth-child(even) {
-        left: 0;
-        padding-left: 70px;
-      }
-      
-      .timeline-marker {
-        left: 20px !important;
-        right: auto;
-      }
+        .hero {
+            flex-direction: column;
+            justify-content: flex-start;
+            padding-top: 100px;
+            text-align: center;
+        }
+        .hero-content {
+            width: 95%;
+            margin-bottom: 2rem;
+        }
+        .hero-title {
+            font-size: clamp(3rem, 12vw, 5rem);
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 3vw, 1.4rem);
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-image {
+            position: relative;
+            width: 80%;
+            max-width: 400px;
+            height: auto;
+            margin: 0 auto;
+            left: unset;
+            transform: none;
+            right: unset;
+            object-fit: cover;
+            object-position: top;
+            box-shadow: none; /* Remove shadow on small screens for cleaner look */
+            border-radius: 5px;
+        }
+        .scroll-prompt {
+            bottom: 2rem;
+        }
+        .site-header {
+            padding: 1rem 0;
+        }
+        .brand {
+            font-size: 1.3rem;
+        }
     }
     
-    @media (max-width: 576px) {
-      .about-stats {
-        grid-template-columns: 1fr;
-      }
-      
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .section {
-        padding: 4rem 0;
-      }
-      
-      .section-title {
-        font-size: 2rem;
-      }
-      
-      .footer-links {
-        flex-direction: column;
-        gap: 1rem;
-      }
-    }
+
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Minimal Header -->
   <header class="site-header">
-    <div class="container header-container">
+    <div class="container">
       <a href="#" class="brand">JUDE PETER</a>
-      
-      <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <i class="fas fa-bars"></i>
-      </button>
-      
-      <ul class="nav-menu" id="navMenu">
-        <li><a href="#about">About</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#career">Career</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+      <nav class="main-nav" id="mainNav">
+          <ul>
+              <li><a href="#about">About</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#work">Work</a></li>
+              <li><a href="#career">Career</a></li>
+              <li><a href="#contact">Contact</a></li>
+          </ul>
+      </nav>
+      <div class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
     </div>
   </header>
 
@@ -746,42 +494,43 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Jude <span>Peter</span></h1>
-        <p class="hero-subtitle">A versatile model with a cinematic eye, specializing in editorial, commercial, and lifestyle photography that tells compelling visual stories.</p>
-        <div>
-          <a href="#portfolio" class="btn">View Portfolio</a>
-          <a href="#contact" class="btn btn-outline">Contact Me</a>
-        </div>
+        <h1 class="hero-title animate-on-load">Jude. T<br>Peter</h1>
+        <p class="hero-subtitle animate-on-load">Welcome To My World of Style</p>
+        <a href="#contact" class="btn animate-on-load">Book a Session</a>
       </div>
+      
+      <!-- Replace with your hero image path -->
+      <img src="images/jude-6.jpg" alt="Jude Peter" class="hero-image animate-on-load">
+      
+      <div class="scroll-prompt">SCROLL</div>
     </div>
-    <img src="images/jude-6.jpg" alt="Jude Peter" class="hero-image">
   </section>
 
   <!-- About Section -->
-  <section class="section" id="about">
+  <section id="about" class="section">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title animate-on-scroll">ABOUT</h2>
       <div class="about-content">
-        <div class="about-text">
+        <div class="about-text animate-on-scroll">
           <p>Jude Peter is a creative model with a cinematic eye—comfortable across lifestyle, street, and editorial looks. He blends calm presence with expressive storytelling, producing frames that feel alive, spontaneous, and memorable.</p>
           <p>With over 8 years of experience in the fashion industry, Jude has worked with top brands and photographers worldwide, bringing versatility and professionalism to every project.</p>
-          <p>His ability to adapt to various styles and concepts makes him a sought-after talent in the competitive modeling industry.</p>
+          <p>Driven by a passion for artistic collaboration, Jude continuously seeks to push boundaries and bring unique visions to life. His dedication to craft ensures every project is executed with precision and a distinct flair.</p>
         </div>
-        <div class="about-stats">
+        <div class="about-stats animate-on-scroll">
           <div class="stat-item">
-            <span class="stat-number">50+</span>
+            <div class="stat-number">50+</div>
             <div class="stat-label">Brands Worked With</div>
           </div>
           <div class="stat-item">
-            <span class="stat-number">12</span>
+            <div class="stat-number">12</div>
             <div class="stat-label">Countries</div>
           </div>
           <div class="stat-item">
-            <span class="stat-number">100+</span>
+            <div class="stat-number">100+</div>
             <div class="stat-label">Editorials</div>
           </div>
           <div class="stat-item">
-            <span class="stat-number">5</span>
+            <div class="stat-number">5</div>
             <div class="stat-label">Awards</div>
           </div>
         </div>
@@ -789,229 +538,201 @@
     </div>
   </section>
 
-  <!-- Portfolio Section -->
-  <section class="section portfolio" id="portfolio">
+  <!-- Rotational Gallery Section -->
+  <section id="gallery" class="section gallery-section">
     <div class="container">
-      <h2 class="section-title">Portfolio</h2>
-      <div class="portfolio-grid">
-        <div class="portfolio-item">
-          <img src="images/jude-1.jpg" alt="Editorial Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Editorial</h3>
-            <p class="portfolio-category">Vogue Italia</p>
+      <h2 class="section-title animate-on-scroll">GALLERY</h2>
+      <div class="gallery-container">
+        <div class="rotational-gallery" id="rotationalGallery">
+          <!-- Gallery items will be added via JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">SELECTED WORK</h2>
+      
+      <div class="work-grid">
+        <div class="work-item animate-on-scroll">
+          <!-- Replace with your image paths -->
+          <img src="images/jude-1.jpg" alt="Editorial Work">
+          <div class="work-info">
+            <h3>Editorial</h3>
+            <p>Vogue Italia</p>
           </div>
         </div>
-        <div class="portfolio-item">
-          <img src="images/jude-2.jpg" alt="Lifestyle Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Lifestyle</h3>
-            <p class="portfolio-category">Nike Campaign</p>
+        
+        <div class="work-item animate-on-scroll">
+          <img src="images/jude-2.jpg" alt="Lifestyle Work">
+          <div class="work-info">
+            <h3>Lifestyle</h3>
+            <p>Nike Campaign</p>
           </div>
         </div>
-        <div class="portfolio-item">
-          <img src="images/street-1.jpg" alt="Street Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Street</h3>
-            <p class="portfolio-category">Urban Stories</p>
+        
+        <div class="work-item animate-on-scroll">
+          <img src="images/street-1.jpg" alt="Street Work">
+          <div class="work-info">
+            <h3>Street</h3>
+            <p>Urban Stories</p>
           </div>
         </div>
-        <div class="portfolio-item">
-          <img src="images/commercial-1.jpg" alt="Commercial Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Commercial</h3>
-            <p class="portfolio-category">Calvin Klein</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="images/jude-8.jpg" alt="Fashion Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Fashion</h3>
-            <p class="portfolio-category">Paris Fashion Week</p>
-          </div>
-        </div>
-        <div class="portfolio-item">
-          <img src="images/jude-9.jpg" alt="Beauty Work" class="portfolio-img">
-          <div class="portfolio-overlay">
-            <h3 class="portfolio-title">Beauty</h3>
-            <p class="portfolio-category">L'Oréal Campaign</p>
+        
+        <div class="work-item animate-on-scroll">
+          <img src="images/commercial-1.jpg" alt="Commercial Work">
+          <div class="work-info">
+            <h3>Commercial</h3>
+            <p>Calvin Klein</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Career Section -->
-  <section class="section" id="career">
+  <!-- Skills Section (NEW) -->
+  <section id="skills" class="section">
     <div class="container">
-      <h2 class="section-title">Education & Career</h2>
+        <h2 class="section-title animate-on-scroll">SKILLS & EXPERTISE</h2>
+        <div class="skills-grid">
+            <div class="skill-item animate-on-scroll">
+                <img src="images/icon-editorial.png" alt="Editorial Icon"> <!-- Placeholder for an icon -->
+                <h3>Editorial Modeling</h3>
+                <p>Delivering captivating narratives for high-fashion magazines and campaigns.</p>
+            </div>
+            <div class="skill-item animate-on-scroll">
+                <img src="images/icon-lifestyle.png" alt="Lifestyle Icon">
+                <h3>Lifestyle & Commercial</h3>
+                <p>Authentic portrayal for brand advertisements and everyday product integration.</p>
+            </div>
+            <div class="skill-item animate-on-scroll">
+                <img src="images/icon-runway.png" alt="Runway Icon">
+                <h3>Runway & Catwalk</h3>
+                <p>Confident presence and dynamic movement on international fashion show stages.</p>
+            </div>
+            <div class="skill-item animate-on-scroll">
+                <img src="images/icon-acting.png" alt="Acting Icon">
+                <h3>Acting & Expression</h3>
+                <p>Versatile facial expressions and body language to convey diverse emotions.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section (NEW) -->
+  <section id="testimonials" class="section testimonials-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">WHAT CLIENTS SAY</h2>
+        <div class="testimonial-carousel animate-on-scroll" id="testimonialCarousel">
+            <div class="testimonial-item">
+                <p>"Jude is a true professional. His ability to adapt to any concept and bring it to life is simply amazing. Highly recommend!"</p>
+                <h4>— Sarah Chen, Creative Director, Vogue</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Working with Jude was a fantastic experience. His calm demeanor and captivating presence truly elevated our campaign."</p>
+                <h4>— Mark Davis, Marketing Manager, Nike</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"A versatile model with an incredible work ethic. Jude understands the camera and delivers exceptional results every time."</p>
+                <h4>— Emily White, Fashion Photographer</h4>
+            </div>
+        </div>
+        <div class="carousel-nav">
+            <button class="prev-btn">&lt;</button>
+            <button class="next-btn">&gt;</button>
+        </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="career" class="section">
+    <div class="container">
+      <h2 class="section-title animate-on-scroll">EDUCATION & CAREER HIGHLIGHTS</h2>
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item animate-on-scroll">
           <div class="timeline-content">
-            <span class="timeline-date">2015</span>
+            <div class="timeline-date">2015</div>
             <h3>Fashion Institute</h3>
             <p>Completed professional modeling course at New York Fashion Institute</p>
           </div>
-          <div class="timeline-marker"></div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item animate-on-scroll">
           <div class="timeline-content">
-            <span class="timeline-date">2016</span>
+            <div class="timeline-date">2016</div>
             <h3>First Major Campaign</h3>
-            <p>Featured in GQ Magazine summer edition</p>
+            <p>Featured in GQ Magazine summer edition, marking his breakthrough in high fashion.</p>
           </div>
-          <div class="timeline-marker"></div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item animate-on-scroll">
           <div class="timeline-content">
-            <span class="timeline-date">2018</span>
+            <div class="timeline-date">2018</div>
             <h3>International Work</h3>
-            <p>Began working with European brands in Milan and Paris</p>
+            <p>Began working with European brands in Milan and Paris, expanding his global footprint.</p>
           </div>
-          <div class="timeline-marker"></div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item animate-on-scroll">
           <div class="timeline-content">
-            <span class="timeline-date">2020</span>
+            <div class="timeline-date">2020</div>
             <h3>Model of the Year</h3>
-            <p>Received Fashion Model Award for outstanding work</p>
+            <p>Received the prestigious Fashion Model Award for outstanding work and industry influence.</p>
           </div>
-          <div class="timeline-marker"></div>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item animate-on-scroll">
           <div class="timeline-content">
-            <span class="timeline-date">2023</span>
-            <h3>Current Projects</h3>
-            <p>Working on sustainable fashion campaigns worldwide</p>
+            <div class="timeline-date">2023</div>
+            <h3>Sustainable Fashion Advocate</h3>
+            <p>Actively involved in sustainable fashion campaigns, promoting ethical practices worldwide.</p>
           </div>
-          <div class="timeline-marker"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="section" id="contact">
+  <section id="contact" class="section contact-section">
     <div class="container">
-      <h2 class="section-title">Get In Touch</h2>
-      <div class="contact-content">
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-envelope"></i>
-            </div>
-            <div class="contact-text">
-              <h4>Email</h4>
-              <p>bookings@judepeter.com</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-phone"></i>
-            </div>
-            <div class="contact-text">
-              <h4>Phone</h4>
-              <p>+1 (555) 123-4567</p>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">
-              <i class="fas fa-map-marker-alt"></i>
-            </div>
-            <div class="contact-text">
-              <h4>Location</h4>
-              <p>New York, NY</p>
-            </div>
-          </div>
-        </div>
-        <div class="contact-form">
-          <form>
-            <div class="form-group">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" class="form-control" required>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" class="form-control" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send Message</button>
+      <h2 class="section-title animate-on-scroll">GET IN TOUCH</h2>
+      <p class="animate-on-scroll">For bookings, collaborations, or any inquiries, please don't hesitate to reach out. I'm excited to hear from you!</p>
+      
+      <div class="contact-form-container animate-on-scroll">
+          <form class="contact-form">
+              <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" required>
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" required>
+              </div>
+              <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" required>
+              </div>
+              <div class="form-group">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="6" required></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message</button>
           </form>
-        </div>
       </div>
+
+      <p class="contact-email animate-on-scroll">Or directly at: <a href="mailto:bookings@judepeter.com" style="color: var(--accent-color);">bookings@judepeter.com</a></p>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">JUDE PETER</div>
-        <p class="footer-quote">"Fashion is not necessarily about labels. It's not about brands. It's about something else that comes from within you." — Ralph Lauren</p>
-      </div>
-      <div class="social-links">
-        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" class="social-link"><i class="fab fa-behance"></i></a>
-      </div>
-      <div class="footer-links">
-        <a href="#about">About</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#career">Career</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <p class="copyright">© 2023 Jude Peter. All rights reserved. Designed by <a href="https://www.instagram.com/the.african_gorilla">Ayo</a></p>
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="https://www.instagram.com/reallyjudepeter" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="#">Agent</a>
+      <a href="#">Privacy Policy</a>
     </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Mobile menu toggle
-      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-      const navMenu = document.getElementById('navMenu');
-      
-      mobileMenuBtn.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
-          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-      });
-      
-      // Header scroll effect
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-          document.querySelector('.site-header').classList.add('scrolled');
-        } else {
-          document.querySelector('.site-header').classList.remove('scrolled');
-        }
-      });
-      
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          
-          const targetId = this.getAttribute('href');
-          if (targetId === '#') return;
-          
-          const targetElement = document.querySelector(targetId);
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop - 100,
-              behavior: 'smooth'
-            });
-            
-            // Close mobile menu after clicking
-            if (navMenu.classList.contains('active')) {
-              navMenu.classList.remove('active');
-              mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            }
-          }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
+    <p class="copyright">
+      © 2024 Jude Peter. All rights reserved. Designed by 
+      <a href="https://www.instagram.com/the.african_gorilla" target="_blank" rel="noopener noreferrer">Ayo</a>.
+    </p>
+  </div>
+</footer>
