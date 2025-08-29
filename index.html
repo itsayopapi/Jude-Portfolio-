@@ -3,21 +3,36 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Jude Peter - Professional model portfolio showcasing editorial, commercial, and lifestyle modeling work" />
   <title>Jude Peter — Model Portfolio</title>
   
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <!-- FAV ICON -->
-    <link rel="icon" href="./Jude fav.png" type="image/png" />
+  <link rel="icon" href="./Jude fav.png" type="image/png" />
   
   <style>
     :root {
       --bg: #0a0a0a;
+      --bg-light: #151515;
       --text: #ffffff;
+      --text-muted: #cccccc;
       --accent: #00f0ff;
+      --accent-dark: #00c4d1;
       --muted: #888;
       --highlight: rgba(0, 240, 255, 0.1);
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
@@ -27,6 +42,7 @@
       margin: 0;
       line-height: 1.6;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
     
     .container {
@@ -40,22 +56,92 @@
       padding: 2rem 0;
       position: fixed;
       width: 100%;
-      z-index: 100;
-      transition: all 0.3s ease;
+      z-index: 1000;
+      transition: var(--transition);
+      background: transparent;
     }
     
     .site-header.scrolled {
-      background: rgba(10, 10, 10, 0.9);
+      background: rgba(10, 10, 10, 0.95);
       padding: 1rem 0;
       backdrop-filter: blur(10px);
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     
     .brand {
       font-weight: 700;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       color: var(--text);
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .brand::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+    
+    .brand:hover::after {
+      width: 100%;
+    }
+    
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+    
+    .nav-menu a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: var(--transition);
+      position: relative;
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-menu a:hover {
+      color: var(--accent);
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
     }
     
     /* Hero Section */
@@ -66,6 +152,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
+      padding-top: 80px;
     }
     
     .hero::before {
@@ -75,7 +162,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at 50% 50%, rgba(0,240,255,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle at 70% 50%, rgba(0,240,255,0.15) 0%, transparent 70%);
       z-index: -1;
     }
     
@@ -83,23 +170,27 @@
       position: absolute;
       right: 5%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(1.1);
       width: 40%;
       max-width: 600px;
-      height: 80%;
+      height: 85%;
       object-fit: cover;
-      border-radius: 5px;
+      border-radius: 8px;
       opacity: 0;
-      transition: opacity 1s ease, transform 1s ease;
+      transition: opacity 1s ease, transform 1.5s ease;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      filter: grayscale(0.2);
     }
     
     .hero-image.active {
       opacity: 1;
-      transform: translateY(-50%) translateX(0);
+      transform: translateY(-50%) scale(1);
     }
     
     .hero-content {
       width: 50%;
+      position: relative;
+      z-index: 2;
     }
     
     .hero-title {
@@ -107,9 +198,9 @@
       font-weight: 700;
       margin: 0 0 1rem;
       line-height: 1;
-      transform: translateY(20px);
+      transform: translateY(30px);
       opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
+      transition: transform 1s ease, opacity 1s ease;
     }
     
     .hero-title.active {
@@ -118,18 +209,73 @@
     }
     
     .hero-subtitle {
-      font-size: 1.2rem;
-      color: var(--muted);
+      font-size: 1.3rem;
+      color: var(--text-muted);
       max-width: 500px;
       margin-bottom: 3rem;
-      transform: translateY(20px);
+      transform: translateY(30px);
       opacity: 0;
-      transition: transform 0.8s ease 0.2s, opacity 0.8s ease 0.2s;
+      transition: transform 1s ease 0.3s, opacity 1s ease 0.3s;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
     }
     
     .hero-subtitle.active {
       transform: translateY(0);
       opacity: 1;
+    }
+    
+    .hero-cta {
+      display: flex;
+      gap: 1.5rem;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 1s ease 0.6s, opacity 1s ease 0.6s;
+    }
+    
+    .hero-cta.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: 2px solid var(--accent);
+    }
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 2px solid var(--text-muted);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-3px);
     }
     
     .scroll-prompt {
@@ -142,6 +288,8 @@
       align-items: center;
       color: var(--muted);
       font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
     
     .scroll-prompt::after {
@@ -155,198 +303,47 @@
     }
     
     @keyframes scrollPrompt {
-      0%, 100% { opacity: 0; height: 0; }
+      0% { opacity: 0; height: 0; }
       50% { opacity: 1; height: 50px; }
+      100% { opacity: 0; height: 0; }
     }
     
     /* Content Sections */
     .section {
       padding: 8rem 0;
       position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
+      min-height: auto;
     }
     
     .section-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 600;
-      margin-bottom: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      margin-bottom: 4rem;
       position: relative;
       display: inline-block;
+      letter-spacing: 1px;
     }
     
     .section-title::after {
       content: "";
       position: absolute;
-      bottom: -10px;
+      bottom: -15px;
       left: 0;
-      width: 50px;
-      height: 2px;
+      width: 70px;
+      height: 3px;
       background: var(--accent);
+      transition: width 0.5s ease;
     }
     
-    /* Rotational Gallery */
-    .gallery-section {
-      background: var(--bg);
-      overflow: hidden;
-    }
-    
-    .gallery-container {
-      position: relative;
+    .section-title:hover::after {
       width: 100%;
-      height: 70vh;
-      perspective: 1000px;
-    }
-    
-    .rotational-gallery {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      transform-style: preserve-3d;
-      transition: transform 1s ease;
-    }
-    
-    .gallery-item {
-      position: absolute;
-      width: 300px;
-      height: 450px;
-      left: 50%;
-      top: 50%;
-      transform-origin: center;
-      transform-style: preserve-3d;
-      transition: all 0.5s ease;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
-    
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    
-    .gallery-content {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 2rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .gallery-item:hover .gallery-content {
-      opacity: 1;
-    }
-    
-    /* Work Grid */
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    
-    .work-item {
-      position: relative;
-      overflow: hidden;
-      aspect-ratio: 1/1.2;
-      transform: translateY(50px);
-      opacity: 0;
-      transition: transform 0.8s ease, opacity 0.8s ease;
-    }
-    
-    .work-item.in-view {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    
-    .work-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .work-item:hover img {
-      transform: scale(1.05);
-    }
-    
-    .work-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      padding: 1.5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    }
-    
-    /* Education Timeline */
-    .timeline {
-      position: relative;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .timeline::before {
-      content: '';
-      position: absolute;
-      width: 2px;
-      background-color: var(--muted);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -1px;
-    }
-    
-    .timeline-item {
-      padding: 10px 40px;
-      position: relative;
-      width: 50%;
-      box-sizing: border-box;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-    
-    .timeline-item.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-    }
-    
-    .timeline-item:nth-child(even) {
-      left: 50%;
-    }
-    
-    .timeline-content {
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 8px;
-      position: relative;
-    }
-    
-    .timeline-date {
-      color: var(--accent);
-      font-weight: 600;
     }
     
     /* About Section */
     .about-content {
       display: flex;
-      gap: 4rem;
-      align-items: center;
+      gap: 5rem;
+      align-items: flex-start;
     }
     
     .about-text {
@@ -359,6 +356,14 @@
     .about-text.in-view {
       transform: translateX(0);
       opacity: 1;
+    }
+    
+    .about-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
     }
     
     .about-stats {
@@ -377,130 +382,905 @@
     }
     
     .stat-item {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 2rem;
-      border-radius: 8px;
+      background: var(--card-bg);
+      padding: 2.5rem 1.5rem;
+      border-radius: 12px;
       text-align: center;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: rgba(0, 240, 255, 0.2);
     }
     
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       font-weight: 700;
       color: var(--accent);
       margin-bottom: 0.5rem;
+      display: block;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+    }
+    
+    /* Rotational Gallery */
+    .gallery-section {
+      background: var(--bg-light);
+      overflow: hidden;
+      padding: 10rem 0;
+    }
+    
+    .gallery-container {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      perspective: 1000px;
+    }
+    
+    .rotational-gallery {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+    }
+    
+    .gallery-item {
+      position: absolute;
+      width: 320px;
+      height: 480px;
+      left: 50%;
+      top: 50%;
+      transform-origin: center;
+      transform-style: preserve-3d;
+      transition: all 0.7s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+    
+    .gallery-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .gallery-item:hover .gallery-content {
+      opacity: 1;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .gallery-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    
+    .gallery-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .gallery-nav {
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+    
+    .gallery-nav-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .gallery-nav-btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translateY(-3px);
+    }
+    
+    /* Work Section */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    
+    .work-item {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      transform: translateY(50px);
+      opacity: 0;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+      border-radius: 12px;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .work-item.in-view {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .work-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    
+    .work-item:hover img {
+      transform: scale(1.1);
+    }
+    
+    .work-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 2rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+      transform: translateY(10px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    
+    .work-item:hover .work-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    
+    .work-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .work-info p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Testimonials Section */
+    .testimonials-section {
+      background: var(--bg-light);
+      position: relative;
+    }
+    
+    .testimonials-container {
+      display: flex;
+      gap: 3rem;
+      overflow-x: hidden;
+    }
+    
+    .testimonial {
+      min-width: 100%;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 12px;
+      transition: transform 0.5s ease;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .testimonial.active {
+      transform: scale(1.02);
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+    
+    .testimonial-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .testimonial-text::before {
+      content: """;
+      font-size: 4rem;
+      color: var(--accent);
+      position: absolute;
+      top: -2rem;
+      left: -1.5rem;
+      opacity: 0.3;
+      font-family: serif;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .author-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .author-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-details h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .author-details p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    
+    /* Education Section */
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1.5px;
+    }
+    
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+      margin-bottom: 3rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+    
+    .timeline-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+      padding-right: 60px;
+    }
+    
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      padding-left: 60px;
+    }
+    
+    .timeline-content {
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      position: relative;
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .timeline-content:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 240, 255, 0.2);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+    
+    .timeline-date {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+    
+    .timeline-content h3 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+    
+    .timeline-content p {
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+    
+    .timeline-marker {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      top: 50%;
+      transform: translateY(-50%);
+      right: -10px;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-marker {
+      left: -10px;
+    }
+    
+    /* Clients Section */
+    .clients-section {
+      background: var(--bg-light);
+    }
+    
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+    
+    .client-item {
+      filter: grayscale(1) brightness(2);
+      opacity: 0.6;
+      transition: var(--transition);
+      text-align: center;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+    }
+    
+    .client-item:hover {
+      filter: grayscale(0) brightness(1);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .client-item img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      position: relative;
+    }
+    
+    .contact-content {
+      display: flex;
+      gap: 5rem;
+    }
+    
+    .contact-info {
+      flex: 1;
+    }
+    
+    .contact-text {
+      margin-bottom: 2.5rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+    
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    
+    .contact-detail:hover .contact-icon {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translateY(-3px);
+    }
+    
+    .contact-detail-text h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .contact-detail-text p {
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .contact-form {
+      flex: 1;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+    
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(0, 240, 255, 0.05);
+    }
+    
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .submit-btn:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 240, 255, 0.2);
     }
     
     /* Footer */
     .site-footer {
-      padding: 4rem 0;
+      background: #0d0d0d;
+      padding: 5rem 0 2rem;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    
+    .footer-brand {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-quote {
+      max-width: 600px;
+      margin: 0 auto;
+      font-style: italic;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.8;
+      font-size: 1.1rem;
     }
     
     .footer-links {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 2.5rem;
       margin-bottom: 2rem;
     }
     
     .footer-links a {
       color: var(--text);
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: var(--transition);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .footer-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s ease;
     }
     
     .footer-links a:hover {
       color: var(--accent);
     }
     
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      text-decoration: none;
+      transition: var(--transition);
+      font-size: 1.2rem;
+    }
+    
+    .social-link:hover {
+      background: var(--accent);
+      color: var(--bg);
+      transform: translateY(-3px);
+    }
+    
     .copyright {
       color: var(--muted);
       font-size: 0.9rem;
     }
-    .site-footer {
-  background: #0d0d0d;
-  padding: 30px 20px;
-  text-align: center;
-  color: #bbb;
-  font-size: 14px;
-}
-
-.site-footer .footer-links {
-  margin-bottom: 15px;
-}
-
-.site-footer .footer-links a {
-  margin: 0 10px;
-  color: #bbb;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.site-footer .footer-links a:hover {
-  color: #efefef;
-}
-
-.site-footer .copyright a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.site-footer .copyright a:hover {
-  color: #fff;
-}
-
+    
+    .copyright a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .copyright a:hover {
+      color: var(--accent);
+    }
+    
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 999;
+      box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      background: var(--accent-dark);
+      transform: translateY(-3px);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 1200px) {
+      .hero-content {
+        width: 60%;
+      }
+      
+      .hero-image {
+        width: 45%;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .about-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      
+      .contact-content {
+        flex-direction: column;
+        gap: 3rem;
+      }
+      
+      .hero-content {
+        width: 100%;
+        text-align: center;
+        padding-top: 2rem;
+      }
+      
+      .hero-subtitle {
+        margin: 0 auto 3rem;
+      }
+      
+      .hero-cta {
+        justify-content: center;
+      }
+      
+      .hero-image {
+        position: relative;
+        width: 70%;
+        max-width: none;
+        margin: 0 auto;
+        right: auto;
+        top: auto;
+        transform: translateY(50px);
+        height: auto;
+      }
+      
+      .hero-image.active {
+        transform: translateY(0);
+      }
+      
+      .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 120px 0 80px;
+      }
+      
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--bg-light);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition);
+        z-index: 999;
+        backdrop-filter: blur(10px);
+      }
+      
+      .nav-menu.active {
+        right: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        z-index: 1000;
+      }
+      
+      .timeline::before {
+        left: 30px;
+      }
+      
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 20px;
+        text-align: left;
+      }
+      
+      .timeline-item:nth-child(odd) {
+        text-align: left;
+        padding-right: 20px;
+      }
+      
+      .timeline-item:nth-child(even) {
+        left: 0;
+        padding-left: 70px;
+      }
+      
+      .timeline-marker {
+        left: 20px !important;
+        right: auto;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .section {
+        padding: 6rem 0;
+      }
+      
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+      
+      .gallery-item {
+        width: 250px;
+        height: 380px;
+      }
+      
+      .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero-title {
+        font-size: clamp(2.5rem, 10vw, 4rem);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .container {
+        width: 95%;
+      }
+      
+      .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+      }
+      
+      .hero-cta {
+        flex-direction: column;
+      }
+      
+      .stat-item {
+        padding: 1.5rem 1rem;
+      }
+      
+      .stat-number {
+        font-size: 2.2rem;
+      }
+      
+      .contact-form {
+        padding: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
   <!-- Minimal Header -->
   <header class="site-header">
-    <div class="container">
+    <div class="container header-container">
       <a href="#" class="brand">JUDE PETER</a>
+      
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <i class="fas fa-bars"></i>
+      </button>
+      
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="home">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Jude. T<br>Peter</h1>
-        <p class="hero-subtitle">Welcome To My Website</p>
+        <h1 class="hero-title">Jude T.<br>Peter</h1>
+        <p class="hero-subtitle">A versatile model with a cinematic eye, specializing in editorial, commercial, and lifestyle photography that tells compelling visual stories.</p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">View Portfolio</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
       </div>
       
-      <!-- Replace with your hero image path -->
-      <img src="images/jude-6.jpg" alt="Jude Peter" class="hero-image">
+      <img src="images/jude-6.jpg" alt="Jude Peter - Professional Model" class="hero-image">
       
-      <!--<div class="scroll-prompt">SCROLL TO DISCOVER</div>-->
+      <div class="scroll-prompt">SCROLL TO DISCOVER</div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section class="section">
+  <section class="section" id="about">
     <div class="container">
       <h2 class="section-title">ABOUT</h2>
       <div class="about-content">
         <div class="about-text">
           <p>Jude Peter is a creative model with a cinematic eye—comfortable across lifestyle, street, and editorial looks. He blends calm presence with expressive storytelling, producing frames that feel alive, spontaneous, and memorable.</p>
-          <p>With over 8 years of experience in the fashion industry, Jude has worked with top brands and photographers worldwide, bringing versatility and professionalism to every project.</p>
+          <p>With over 8 years of experience in the fashion industry, Jude has worked with top brands and photographers worldwide, bringing versatility and professionalism to every project. His ability to adapt to various styles and concepts makes him a sought-after talent in the competitive modeling industry.</p>
+          <p>When not in front of the camera, Jude enjoys photography himself, capturing street scenes and landscapes that inspire his modeling work. This dual perspective allows him to better understand the creative process and collaborate effectively with photographers and directors.</p>
         </div>
         <div class="about-stats">
           <div class="stat-item">
-            <div class="stat-number">50+</div>
+            <span class="stat-number">50+</span>
             <div class="stat-label">Brands Worked With</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">12</div>
+            <span class="stat-number">12</span>
             <div class="stat-label">Countries</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">100+</div>
+            <span class="stat-number">100+</span>
             <div class="stat-label">Editorials</div>
           </div>
           <div class="stat-item">
-            <div class="stat-number">5</div>
+            <span class="stat-number">5</span>
             <div class="stat-label">Awards</div>
           </div>
         </div>
@@ -509,26 +1289,33 @@
   </section>
 
   <!-- Rotational Gallery Section -->
-  <section class="section gallery-section">
+  <section class="section gallery-section" id="gallery">
     <div class="container">
-      <h2 class="section-title">GALLERY</h2>
+      <h2 class="section-title">PORTFOLIO</h2>
       <div class="gallery-container">
         <div class="rotational-gallery" id="rotationalGallery">
           <!-- Gallery items will be added via JavaScript -->
         </div>
       </div>
+      <div class="gallery-nav">
+        <button class="gallery-nav-btn" id="galleryPrev">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="gallery-nav-btn" id="galleryNext">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
     </div>
   </section>
 
   <!-- Work Section -->
-  <section class="section">
+  <section class="section" id="work">
     <div class="container">
       <h2 class="section-title">SELECTED WORK</h2>
       
       <div class="work-grid">
         <div class="work-item">
-          <!-- Replace with your image paths -->
-          <img src="images/jude-1.jpg" alt="Editorial Work">
+          <img src="images/jude-1.jpg" alt="Editorial Work for Vogue Italia">
           <div class="work-info">
             <h3>Editorial</h3>
             <p>Vogue Italia</p>
@@ -536,7 +1323,7 @@
         </div>
         
         <div class="work-item">
-          <img src="images/jude-2.jpg" alt="Lifestyle Work">
+          <img src="images/jude-2.jpg" alt="Lifestyle Work for Nike Campaign">
           <div class="work-info">
             <h3>Lifestyle</h3>
             <p>Nike Campaign</p>
@@ -544,7 +1331,7 @@
         </div>
         
         <div class="work-item">
-          <img src="images/street-1.jpg" alt="Street Work">
+          <img src="images/street-1.jpg" alt="Street Fashion for Urban Stories">
           <div class="work-info">
             <h3>Street</h3>
             <p>Urban Stories</p>
@@ -552,10 +1339,74 @@
         </div>
         
         <div class="work-item">
-          <img src="images/commercial-1.jpg" alt="Commercial Work">
+          <img src="images/commercial-1.jpg" alt="Commercial Work for Calvin Klein">
           <div class="work-info">
             <h3>Commercial</h3>
             <p>Calvin Klein</p>
+          </div>
+        </div>
+        
+        <div class="work-item">
+          <img src="images/jude-3.jpg" alt="Fashion Week Runway">
+          <div class="work-info">
+            <h3>Runway</h3>
+            <p>Paris Fashion Week</p>
+          </div>
+        </div>
+        
+        <div class="work-item">
+          <img src="images/jude-4.jpg" alt="Beauty Campaign">
+          <div class="work-info">
+            <h3>Beauty</h3>
+            <p>L'Oréal Campaign</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="section testimonials-section">
+    <div class="container">
+      <h2 class="section-title">TESTIMONIALS</h2>
+      
+      <div class="testimonials-container" id="testimonialsContainer">
+        <div class="testimonial active">
+          <p class="testimonial-text">Jude brings an incredible energy to every shoot. His ability to understand the creative direction and translate it into compelling visuals is remarkable. He's professional, punctual, and truly a pleasure to work with.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Rodriguez">
+            </div>
+            <div class="author-details">
+              <h4>Michael Rodriguez</h4>
+              <p>Creative Director, Vogue Italia</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <p class="testimonial-text">Working with Jude was transformative for our campaign. He doesn't just model clothes—he brings them to life with character and authenticity. His versatility across different styles makes him an asset to any project.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Chen">
+            </div>
+            <div class="author-details">
+              <h4>Sarah Chen</h4>
+              <p>Photographer, Nike Global</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial">
+          <p class="testimonial-text">Jude's professionalism on set is matched only by his creative input. He often suggests poses and expressions that elevate the final product. His modeling isn't just technical—it's artistic.</p>
+          <div class="testimonial-author">
+            <div class="author-image">
+              <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="James Wilson">
+            </div>
+            <div class="author-details">
+              <h4>James Wilson</h4>
+              <p>Art Director, Calvin Klein</p>
+            </div>
           </div>
         </div>
       </div>
@@ -563,81 +1414,196 @@
   </section>
 
   <!-- Education Section -->
-  <section class="section">
+  <section class="section" id="career">
     <div class="container">
       <h2 class="section-title">EDUCATION & CAREER</h2>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2015</div>
+            <span class="timeline-date">2015</span>
             <h3>Fashion Institute</h3>
-            <p>Completed professional modeling course at New York Fashion Institute</p>
+            <p>Completed professional modeling course at New York Fashion Institute, specializing in runway techniques and portfolio development.</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2016</div>
+            <span class="timeline-date">2016</span>
             <h3>First Major Campaign</h3>
-            <p>Featured in GQ Magazine summer edition</p>
+            <p>Featured in GQ Magazine summer edition, marking the beginning of international recognition in the fashion industry.</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2018</div>
+            <span class="timeline-date">2018</span>
             <h3>International Work</h3>
-            <p>Began working with European brands in Milan and Paris</p>
+            <p>Began working with European brands in Milan and Paris, expanding portfolio to include high fashion and luxury campaigns.</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2020</div>
+            <span class="timeline-date">2020</span>
             <h3>Model of the Year</h3>
-            <p>Received Fashion Model Award for outstanding work</p>
+            <p>Received Fashion Model Award for outstanding work and contribution to the industry during Paris Fashion Week.</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
         <div class="timeline-item">
           <div class="timeline-content">
-            <div class="timeline-date">2023</div>
+            <span class="timeline-date">2023</span>
             <h3>Current Projects</h3>
-            <p>Working on sustainable fashion campaigns worldwide</p>
+            <p>Working on sustainable fashion campaigns worldwide, focusing on eco-conscious brands and ethical production practices.</p>
           </div>
+          <div class="timeline-marker"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="section">
+  <!-- Clients Section -->
+  <section class="section clients-section">
     <div class="container">
-      <h2 class="section-title">CONTACT</h2>
-      <p>For bookings and collaborations:</p>
-      <p><a href="mailto:bookings@judepeter.com" style="color: var(--accent);">bookings@judepeter.com</a></p>
+      <h2 class="section-title">CLIENTS & COLLABORATIONS</h2>
+      
+      <div class="clients-grid">
+        <div class="client-item">VOGUE</div>
+        <div class="client-item">GQ</div>
+        <div class="client-item">NIKE</div>
+        <div class="client-item">CALVIN KLEIN</div>
+        <div class="client-item">L'ORÉAL</div>
+        <div class="client-item">TOMMY HILFIGER</div>
+        <div class="client-item">HUGO BOSS</div>
+        <div class="client-item">ZARA</div>
+      </div>
     </div>
   </section>
 
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-links">
-      <a href="https://www.instagram.com/reallyjudepeter" target="_blank" rel="noopener noreferrer">Instagram</a>
-      <a href="#">Agent</a>
-      <a href="#">Imprint</a>
+  <!-- Contact Section -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <h2 class="section-title">GET IN TOUCH</h2>
+      
+      <div class="contact-content">
+        <div class="contact-info">
+          <p class="contact-text">For bookings, collaborations, or any inquiries, please reach out through the form or contact details below. I typically respond within 24-48 hours.</p>
+          
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Email</h4>
+                <p>bookings@judepeter.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Phone</h4>
+                <p>+1 (555) 123-4567</p>
+              </div>
+            </div>
+            
+            <div class="contact-detail">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-detail-text">
+                <h4>Location</h4>
+                <p>New York, NY</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">
+              Send Message <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-    <p class="copyright">
-      © 2025 Jude Peter. All rights reserved. Designed by 
-      <a href="https://www.instagram.com/the.african_gorilla" target="_blank" rel="noopener noreferrer">Ayo</a>.
-    </p>
-  </div>
-</footer>
+  </section>
 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">JUDE PETER</div>
+        <p class="footer-quote">"Fashion is not necessarily about labels. It's not about brands. It's about something else that comes from within you." — Ralph Lauren</p>
+      </div>
+      
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#gallery">Portfolio</a>
+        <a href="#work">Work</a>
+        <a href="#career">Career</a>
+        <a href="#contact">Contact</a>
+      </div>
+      
+      <div class="social-links">
+        <a href="https://www.instagram.com/reallyjudepeter" class="social-link" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+        <a href="#" class="social-link">
+          <i class="fab fa-behance"></i>
+        </a>
+      </div>
+      
+      <p class="copyright">
+        © 2025 Jude Peter. All rights reserved. Designed by 
+        <a href="https://www.instagram.com/the.african_gorilla" target="_blank" rel="noopener noreferrer">Ayo</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <a href="#" class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </a>
 
   <script>
-    // Hero animation on load
     document.addEventListener('DOMContentLoaded', function() {
+      // Hero animation on load
       setTimeout(() => {
         document.querySelector('.hero-title').classList.add('active');
         document.querySelector('.hero-subtitle').classList.add('active');
         document.querySelector('.hero-image').classList.add('active');
+        document.querySelector('.hero-cta').classList.add('active');
       }, 300);
       
       // Create rotational gallery items with your images
@@ -645,18 +1611,33 @@
       const galleryItems = [
         { 
           img: 'images/jude-8.jpg',
+          title: 'Urban Elegance',
+          desc: 'Street fashion editorial'
         },
         { 
           img: 'images/jude-9.jpg',
+          title: 'Minimalist',
+          desc: 'Studio portrait series'
         },
         { 
           img: 'images/jude-7.jpg',
+          title: 'Coastal',
+          desc: 'Lifestyle campaign'
         },
         { 
           img: 'images/jude-6.jpg',
+          title: 'Editorial',
+          desc: 'High fashion magazine feature'
         },
         { 
           img: 'images/jude-5.jpg',
+          title: 'Runway',
+          desc: 'Paris Fashion Week'
+        },
+        { 
+          img: 'images/jude-4.jpg',
+          title: 'Beauty',
+          desc: 'Skincare campaign'
         }
       ];
       
@@ -664,29 +1645,78 @@
         const angle = (360 / galleryItems.length) * index;
         const galleryItem = document.createElement('div');
         galleryItem.className = 'gallery-item';
-        galleryItem.style.transform = `rotateY(${angle}deg) translateZ(400px)`;
+        galleryItem.style.transform = `rotateY(${angle}deg) translateZ(500px)`;
         
         galleryItem.innerHTML = `
           <img src="${item.img}" alt="${item.title}">
           <div class="gallery-content">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
+            <h3 class="gallery-title">${item.title}</h3>
+            <p class="gallery-desc">${item.desc}</p>
           </div>
         `;
         
         gallery.appendChild(galleryItem);
       });
       
-      // Rotate gallery on scroll
+      // Rotate gallery on scroll and with buttons
       let currentAngle = 0;
       const gallerySection = document.querySelector('.gallery-section');
       const rotationalGallery = document.getElementById('rotationalGallery');
+      const galleryPrev = document.getElementById('galleryPrev');
+      const galleryNext = document.getElementById('galleryNext');
+      const angleIncrement = 360 / galleryItems.length;
+      
+      function rotateGallery(direction) {
+        currentAngle += direction * angleIncrement;
+        rotationalGallery.style.transform = `rotateY(${currentAngle}deg)`;
+      }
+      
+      galleryPrev.addEventListener('click', () => rotateGallery(1));
+      galleryNext.addEventListener('click', () => rotateGallery(-1));
+      
+      // Testimonials slider
+      const testimonials = document.querySelectorAll('.testimonial');
+      const testimonialsContainer = document.getElementById('testimonialsContainer');
+      let currentTestimonial = 0;
+      
+      function showTestimonial(index) {
+        testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+        testimonials[index].classList.add('active');
+      }
+      
+      // Auto-rotate testimonials
+      setInterval(() => {
+        currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+        showTestimonial(currentTestimonial);
+      }, 5000);
+      
+      // Mobile menu toggle
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const navMenu = document.getElementById('navMenu');
+      
+      mobileMenuBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+      });
+      
+      // Close mobile menu when clicking on links
+      document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+      
+      // Back to top button
+      const backToTop = document.getElementById('backToTop');
       
       window.addEventListener('scroll', function() {
         const scrollPosition = window.scrollY;
         const galleryPosition = gallerySection.offsetTop;
         const windowHeight = window.innerHeight;
         
+        // Rotate gallery on scroll
         if (scrollPosition > galleryPosition - windowHeight / 2) {
           const scrollPercent = (scrollPosition - galleryPosition + windowHeight / 2) / (windowHeight * 0.8);
           currentAngle = scrollPercent * 360;
@@ -699,6 +1729,43 @@
         } else {
           document.querySelector('.site-header').classList.remove('scrolled');
         }
+        
+        // Back to top button
+        if (window.scrollY > 500) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 100,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+      
+      // Form submission
+      const contactForm = document.getElementById('contactForm');
+      
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Here you would typically send the form data to a server
+        // For this example, we'll just show an alert
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
       });
       
       // Intersection Observer for scroll animations
